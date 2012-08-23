@@ -1,4 +1,6 @@
 <?php
+namespace TYPO3\CMS\Rsaauth\Storage;
+
 /***************************************************************
  *  Copyright notice
  *
@@ -21,11 +23,30 @@
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
-require_once \TYPO3\CMS\Core\Extension\ExtensionManager::extPath('sv') . 'class.tx_sv_auth.php';
-/*
- * @deprecated since 6.0, the classname tx_rsaauth_sv1 and this file is obsolete
- * and will be removed by 7.0. The class was renamed and is now located at:
- * typo3/sysext/rsaauth/Classes/RsaAuthService.php
+/**
+ * This class contains the abstract storage for the RSA private keys
+ *
+ * @author Dmitry Dulepov <dmitry@typo3.org>
+ * @package TYPO3
+ * @subpackage tx_rsaauth
  */
-require_once \TYPO3\CMS\Core\Extension\ExtensionManager::extPath('rsaauth') . 'Classes/RsaAuthService.php';
+abstract class AbstractStorage {
+
+	/**
+	 * Retrieves the key from the storage
+	 *
+	 * @return string The key or NULL
+	 */
+	abstract public function get();
+
+	/**
+	 * Stores the key in the storage
+	 *
+	 * @param string $key The key
+	 */
+	abstract public function put($key);
+
+}
+
+
 ?>
